@@ -73,7 +73,7 @@ frappe.ui.form.on("Quotation Item", {
         var row = locals[cdt][cdn];
         if (row.custom_stock_entry) {
             frappe.db.get_doc("Stock Entry", row.custom_stock_entry).then((doc) => {
-                frappe.model.set_value(cdt, cdn, "custom_docter", doc.custom_docter);
+                frappe.model.set_value(cdt, cdn, "custom_doctor", doc.custom_doctor);
                 frappe.model.set_value(cdt, cdn, "custom_surgery_date", doc.custom_surgery_date);
                 frappe.model.set_value(cdt, cdn, "custom_instrument_set", doc.custom_instrument_set);
                 frappe.model.set_value(cdt, cdn, "custom_surgical_side", doc.custom_surgical_side);
@@ -82,7 +82,7 @@ frappe.ui.form.on("Quotation Item", {
                 frappe.model.set_value(cdt, cdn, "custom_loan_purpose", doc.custom_loan_purpose);              
             });
         } else {
-            frappe.model.set_value(cdt, cdn, "custom_docter", "");
+            frappe.model.set_value(cdt, cdn, "custom_doctor", "");
             frappe.model.set_value(cdt, cdn, "custom_surgery_date", "");
             frappe.model.set_value(cdt, cdn, "custom_instrument_set", "");
             frappe.model.set_value(cdt, cdn, "custom_surgical_side", "");

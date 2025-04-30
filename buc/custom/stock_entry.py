@@ -14,7 +14,7 @@ def make_quotation_from_stock_entry(source_name, target_doc=None):
     def update_item(source_item, target_item, source_doc):
         target_item.update({
             "custom_stock_entry": source_doc.name,
-            "custom_docter": source_doc.custom_docter,
+            "custom_doctor": source_doc.custom_doctor,
             "custom_surgery_date": source_doc.custom_surgery_date,
             "custom_instrument_set": source_doc.custom_instrument_set,
             "custom_surgical_side": source_doc.custom_surgical_side,

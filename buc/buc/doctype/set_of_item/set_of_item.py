@@ -8,11 +8,6 @@ from frappe.model.document import Document
 class SetofItem(Document):
 
 	def validate(self):
-		# Validate suplicate items
-		items = list(map(lambda x: x.item_code, self.items))
-		if len(items) != len(set(items)):
-			frappe.throw("Duplicate item codes found in the set.")
-
 		# Validate serial no / batch no
 		for item in self.items:
 			if item.serial_no and item.batch_no:

@@ -7,18 +7,31 @@ frappe.ui.form.on("Set of Item", {
             let row = locals[cdt][cdn];
             return {
                 filters: {
-                    item_code: row.item_code ? row.item_code : "",
+                    warehouse: frm.doc.warehouse,
+                    item_code: row.item_code,
+                    status: "Active",
                 },
             };
         });
         frm.set_query("batch_no", "items", function (doc, cdt, cdn) {
             let row = locals[cdt][cdn];
-            return {
-                filters: {
-                    item: row.item_code ? row.item_code : "",
-                },
-            };
+            let filters = {
+                item_code: row.item_code,
+                include_expired_batches: 1,
+                warehouse: frm.doc.warehouse,
+            }
+			return {
+				query: "erpnext.controllers.queries.get_batch_no",
+				filters: filters,
+			};
         });
+    },
+    warehouse: function(frm) {
+        frm.doc.items.forEach(function(row) {
+            row.serial_no = null;
+            row.batch_no = null;
+        });
+        frm.refresh_field("items");
     }
 });
 

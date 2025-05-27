@@ -28,6 +28,13 @@ frappe.ui.form.on("Stock Entry", "custom_get_serial__batch_no_from_set_of_item",
                 frappe.throw(__("Source warehouse must same with set of item."))
             }
 
+            // Serial / Batch No. must clean
+            if (row.serial_no || row.batch_no) {
+                frappe.throw(__("Serial / Batch No. is assigned, please remove it before this action."))
+            }
+        });
+
+        frm.doc.items.forEach(row => {
             // Assign serial no in stock entry item
             let serialList = serialMap[row.item_code];
             if (serialList && serialList.length > 0) {

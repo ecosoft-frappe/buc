@@ -17,3 +17,5 @@ class SetofItem(Document):
 			if not item.serial_no and not item.batch_no:
 				frappe.throw("Either serial no or batch no must be set for an item %s." % (
 					item.item_code))
+			if item.serial_no and item.qty != 1:
+				frappe.throw("Row %s: item code %s must have qty equal to 1." % (item.idx, item.item_code))

@@ -38,14 +38,24 @@ frappe.ui.form.on("Stock Entry", "custom_get_serial__batch_no_from_set_of_item",
             // Assign serial no in stock entry item
             let serialList = serialMap[row.item_code];
             if (serialList && serialList.length > 0) {
-                frappe.model.set_value(row.doctype, row.name, "serial_no", serialList.shift());
+                let serialNo = ""
+                for (let i = 1; i <= row.qty; i++) {
+                    if (serialList.length > 0) {
+                        serialNo += serialList.shift();
+                    } else {
+                        serialNo += "-";
+                    }
+                    serialNo += "\n";
+                }
+                frappe.model.set_value(row.doctype, row.name, "serial_no", serialNo);
             } else {
                 frappe.model.set_value(row.doctype, row.name, "serial_no", null);
             }
             // Assign batch no in stock entry item
             let batchList = batchMap[row.item_code];
             if (batchList && batchList.length > 0) {
-                frappe.model.set_value(row.doctype, row.name, "batch_no", batchList.shift());
+                let batchNo = batchList.shift();
+                frappe.model.set_value(row.doctype, row.name, "batch_no", batchNo);
             } else {
                 frappe.model.set_value(row.doctype, row.name, "batch_no", null);
             }

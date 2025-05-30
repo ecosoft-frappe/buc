@@ -8,7 +8,7 @@ def make_quotation_from_stock_entry(source_name, target_doc=None):
         target.update({
             "quotation_to": "Customer",
             "party_name": source.custom_customer_name,
-            "order_type": "Sales",
+            "order_type": "Sales Order",
         })
 
     def update_item(source_item, target_item, source_doc):

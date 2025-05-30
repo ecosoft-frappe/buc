@@ -1,10 +1,10 @@
 frappe.ui.form.on("Material Request", {
-    custom_hospital: function(frm) {
-        if (frm.doc.custom_hospital) {
+    custom_customer_name: function(frm) {
+        if (frm.doc.custom_customer_name) {
             frappe.call({
                 method: "buc.custom.material_request.get_target_warehouse",
                 args: {
-                    customer: frm.doc.custom_hospital,
+                    customer: frm.doc.custom_customer_name,
                 },
                 callback: function(response) {
                     if(response.message) {

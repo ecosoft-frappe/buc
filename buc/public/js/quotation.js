@@ -79,7 +79,8 @@ frappe.ui.form.on("Quotation Item", {
                 frappe.model.set_value(cdt, cdn, "custom_surgical_side", doc.custom_surgical_side);
                 frappe.model.set_value(cdt, cdn, "custom_patient_name", doc.custom_patient_name);
                 frappe.model.set_value(cdt, cdn, "custom_hn", doc.custom_hn);
-                frappe.model.set_value(cdt, cdn, "custom_loan_purpose", doc.custom_loan_purpose);              
+                frappe.model.set_value(cdt, cdn, "custom_loan_purpose", doc.custom_loan_purpose);
+                frappe.model.set_value(cdt, cdn, "custom_deliver_item", 1);
             });
         } else {
             frappe.model.set_value(cdt, cdn, "custom_doctor", "");
@@ -89,6 +90,7 @@ frappe.ui.form.on("Quotation Item", {
             frappe.model.set_value(cdt, cdn, "custom_patient_name", "");
             frappe.model.set_value(cdt, cdn, "custom_hn", "");
             frappe.model.set_value(cdt, cdn, "custom_loan_purpose", "");
+            frappe.model.set_value(cdt, cdn, "custom_deliver_item", "");
         }
     }
 })

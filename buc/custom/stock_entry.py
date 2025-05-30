@@ -21,6 +21,7 @@ def make_quotation_from_stock_entry(source_name, target_doc=None):
             "custom_patient_name": source_doc.custom_patient_name,
             "custom_hn": source_doc.custom_hn,
             "custom_loan_purpose": source_doc.custom_loan_purpose,
+            "custom_deliver_item": 1,
         })
 
     doc = get_mapped_doc(

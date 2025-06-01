@@ -31,4 +31,6 @@ def item_uom(self):
 
 QuotationItem.item_ref_code = item_ref_code
 QuotationItem.item_ref_code_2 = item_ref_code_2
+QuotationItem.item_description_en = item_description_en
+QuotationItem.item_description_th = item_description_th
 QuotationItem.item_uom = item_uom

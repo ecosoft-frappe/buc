@@ -17,6 +17,14 @@ def item_ref_code_2(self):
     return get_item_customer_detail(self, "custom_ref_code_2")
 
 @property
+def item_description_en(self):
+    return get_item_customer_detail(self, "custom_description_en")
+
+@property
+def item_description_th(self):
+    return get_item_customer_detail(self, "custom_description_th")
+
+@property
 def item_uom(self):
     return get_item_customer_detail(self, "custom_uom")
 

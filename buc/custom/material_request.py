@@ -1,4 +1,39 @@
 import frappe
+from erpnext.stock.doctype.material_request.material_request import MaterialRequest
+
+
+class MaterialRequest(MaterialRequest):
+    @property
+    def manager_role(doc):
+        department = frappe.db.get_value(
+            "Employee",
+            {"user_id": doc.owner},
+            "department"
+        )
+        if department:
+            manager_role = frappe.db.get_value(
+                "Department",
+                department,
+                "custom_manager_role"
+            )
+            if manager_role:
+                return manager_role
+            else:
+                frappe.throw("Manager Role doesn't exist in department %s." % department)
+        else:
+            frappe.throw("Department doesn't exist for document owner.")
+
+    @property
+    def ceo_role(doc):
+        ceo_role = frappe.db.get_value(
+            "Company",
+            doc.company,
+            "custom_ceo_role"
+        )
+        if ceo_role:
+            return ceo_role
+        else:
+            frappe.throw("CEO Role doesn't exist in %s." % doc.company)
 
 
 @frappe.whitelist()

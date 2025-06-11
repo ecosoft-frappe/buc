@@ -135,9 +135,9 @@ doctype_js = {
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+    "Material Request": "buc.custom.material_request.MaterialRequest",
+}
 
 # Document Events
 # ---------------

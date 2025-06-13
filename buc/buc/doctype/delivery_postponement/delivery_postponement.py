@@ -17,6 +17,15 @@ class DeliveryPostponement(Document):
             if sales_order_item.delivered_qty >= sales_order_item.qty:
                 frappe.throw("Delivered quantity must be less than the ordered quantity.")
 
+    @property
+    def sales_order(doc):
+        sales_order = list(set(filter(lambda x: x, [item.sales_order for item in doc.items])))
+        return ", ".join(sales_order)
+
+    @property
+    def sales_invoice(doc):
+        sales_invoice = list(set(filter(lambda x: x, [item.sales_invoice for item in doc.items])))
+        return ", ".join(sales_invoice)
 
 @frappe.whitelist()
 def make_delivery_confirmation(source_name, target_doc=None):

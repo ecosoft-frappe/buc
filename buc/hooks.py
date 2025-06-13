@@ -249,3 +249,15 @@ override_doctype_dashboards = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = [
+    {
+        "doctype": "Workflow",
+        "filters": [
+            [
+                "name",
+                "in",
+                ("Delivery Postponement", "Delivery Confirmation")
+            ]
+        ],
+    },
+]

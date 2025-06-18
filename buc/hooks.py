@@ -136,7 +136,9 @@ doctype_js = {
 # Override standard doctype classes
 
 override_doctype_class = {
-    "Material Request": "buc.custom.material_request.MaterialRequest",
+    "Material Request": "buc.custom.material_request.MaterialRequestBUC",
+    "Quotation": "buc.custom.quotation.QuotationBUC",
+    "Stock Entry": "buc.custom.stock_entry.StockEntryBUC",
 }
 
 # Document Events

@@ -4,62 +4,42 @@ frappe.ui.form.on("Quotation", {
             frm.add_custom_button(
                 __("Loan Document"),
                 function () {
-                    frappe.call({
-                        method: "buc.custom.quotation.get_stock_entry",
-                        callback: function (r) {
-                            var used_stock_entry = r.message || [];
-                            setTimeout(function () {
-                                $('span[title="Custom Customer Name"]').text("Customer Name");
-                                $('span[title="Custom Patient Name"]').text("Patient Name");
-                                $('span[title="Custom Hn"]').text("HN.");
-                            }, 1000);
-
-                            erpnext.utils.map_current_doc({
-                                method: "buc.custom.stock_entry.make_quotation_from_stock_entry",
-                                source_doctype: "Stock Entry",
-                                target: frm,
-                                setters: [
-                                    {
-                                        label: __("Stock Entry Type"),
-                                        fieldname: "stock_entry_type",
-                                        fieldtype: "Link",
-                                        options: "Stock Entry Type",
-                                        get_query: function () {
-                                            return {
-                                                filters: [["purpose", "=", "Material Transfer"]],
-                                            };
-                                        },
-                                    },
-                                    {
-                                        label: __("Customer Name"),
-                                        fieldname: "custom_customer_name",
-                                        fieldtype: "Link",
-                                        options: "Customer",
-                                        default: frm.doc.quotation_to === "Customer" ? frm.doc.party_name : "",
-                                    },
-                                    {
-                                        label: __("Patient Name"),
-                                        fieldname: "custom_patient_name",
-                                        fieldtype: "Data",
-                                    },
-                                    {
-                                        label: __("HN."),
-                                        fieldname: "custom_hn",
-                                        fieldtype: "Data",
-                                    },
-                                ],
+                    erpnext.utils.map_current_doc({
+                        method: "buc.custom.stock_entry.make_quotation_from_stock_entry",
+                        source_doctype: "Stock Entry",
+                        target: frm,
+                        setters: [
+                            {
+                                label: __("Stock Entry Type"),
+                                fieldname: "stock_entry_type",
+                                fieldtype: "Link",
+                                options: "Stock Entry Type",
                                 get_query: function () {
                                     return {
-                                        filters: {
-                                            docstatus: 1,
-                                            purpose: "Material Transfer",
-                                            company: frm.doc.company,
-                                            name: ["not in", used_stock_entry]
-                                        }
-                                    }
-                                }
-                            });
-                        }
+                                        filters: [["purpose", "=", "Material Transfer"]],
+                                    };
+                                },
+                            },
+                            {
+                                label: __("Customer Name"),
+                                fieldname: "customer_name",
+                                fieldtype: "Link",
+                                options: "Customer",
+                                default: frm.doc.quotation_to === "Customer" ? frm.doc.party_name : "",
+                            },
+                            {
+                                label: __("Patient Name"),
+                                fieldname: "patient_name",
+                                fieldtype: "Data",
+                            },
+                            {
+                                label: __("HN."),
+                                fieldname: "hn",
+                                fieldtype: "Data",
+                            },
+                        ],
+                        get_query_method:
+                            "buc.custom.stock_entry.get_loan_document",
                     });
                 },
                 __("Get Items From")

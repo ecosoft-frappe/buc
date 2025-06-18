@@ -2,7 +2,7 @@ import frappe
 from erpnext.stock.doctype.material_request.material_request import MaterialRequest
 
 
-class MaterialRequest(MaterialRequest):
+class MaterialRequestBUC(MaterialRequest):
     @property
     def manager_role(doc):
         department = frappe.db.get_value(

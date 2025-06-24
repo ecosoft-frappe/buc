@@ -48,6 +48,7 @@ doctype_js = {
     "Quotation": "public/js/quotation.js",
     "Sales Order": "public/js/sales_order.js",
     "Sales Invoice": "public/js/sales_invoice.js",
+    "Delivery Note": "public/js/delivery_note.js",
     "Stock Entry": "public/js/stock_entry.js",
     "Material Request": "public/js/material_request.js",
     "Employee": "public/js/employee.js",

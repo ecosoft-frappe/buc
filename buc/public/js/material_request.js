@@ -23,7 +23,7 @@ frappe.ui.form.on("Material Request", {
                             d.division = division,
                             d.business_unit = business_unit
                         });
-                    }, 1000);
+                    }, 5000);
                 })
             })
         }

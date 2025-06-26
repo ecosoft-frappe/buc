@@ -1,5 +1,6 @@
 import frappe
 from erpnext.stock.doctype.material_request.material_request import MaterialRequest
+from erpnext.stock.doctype.material_request.material_request import make_purchase_order as origin_make_purchase_order
 
 
 class MaterialRequestBUC(MaterialRequest):
@@ -56,3 +57,15 @@ def get_target_warehouse(customer):
         if warehouse:
             target_warehouse = warehouse[0]
     return target_warehouse
+
+@frappe.whitelist()
+def make_purchase_order(source_name, target_doc=None, args=None):
+    doc = origin_make_purchase_order(source_name, target_doc=target_doc, args=args)
+    for tax in doc.taxes:
+        tax.update({
+            "cost_center": doc.cost_center,
+            "department": doc.department,
+            "division": doc.division,
+            "business_unit": doc.business_unit,
+        })
+    return doc

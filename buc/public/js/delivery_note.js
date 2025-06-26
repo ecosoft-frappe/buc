@@ -1,6 +1,6 @@
 frappe.ui.form.on("Delivery Note", {
     onload: function(frm) {
-        if (frm.is_new() && !frm.doc.amended_from && !frm.doc.__onload?.load_after_mapping) {
+        if (frm.is_new() && !frm.doc.amended_from && !frm.doc.__onload) {
             frappe.db.get_value("Employee", {"user_id": frappe.session.user}, ["cost_center", "department", "division", "business_unit"], (r) => {
                 frappe.db.get_value("Company", frm.doc.company, "cost_center", (k) => {
                     let cost_center = r.cost_center

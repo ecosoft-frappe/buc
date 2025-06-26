@@ -15,4 +15,10 @@ frappe.ui.form.on("Employee", {
             };
         });
 	},
+	department(frm) {
+	    frm.set_value("division", "");
+	},
+	division(frm) {
+	    frm.set_value("business_unit", "");
+	}
 })

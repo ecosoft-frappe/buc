@@ -29,7 +29,7 @@ frappe.ui.form.on("Delivery Note", {
                             d.division = division,
                             d.business_unit = business_unit
                         });
-                    }, 1000);
+                    }, 5000);
                 })
             })
         }

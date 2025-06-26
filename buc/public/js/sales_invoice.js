@@ -106,7 +106,6 @@ frappe.ui.form.on("Sales Invoice", {
         }, 1000);
     },
 	department: function (frm) {
-	    frm.set_value("division", "");
         $.each(frm.doc.items, function(i, d){
             d.department = frm.doc.department
         });
@@ -116,7 +115,6 @@ frappe.ui.form.on("Sales Invoice", {
         });
 	},
 	division: function (frm) {
-	    frm.set_value("business_unit", "");
         $.each(frm.doc.items, function(i, d){
             d.division = frm.doc.division
         });
@@ -146,12 +144,6 @@ frappe.ui.form.on("Sales Invoice Item", {
             row.business_unit = frm.doc.business_unit
         }, 1000)
     },
-	department: function (frm, cdt, cdn) {
-        frappe.model.set_value(cdt, cdn, "division", "");
-	},
-	division: function (frm, cdt, cdn) {
-        frappe.model.set_value(cdt, cdn, "business_unit", "");
-	}
 });
 frappe.ui.form.on("Sales Taxes and Charges", {
     taxes_add: function (frm, cdt, cdn) {
@@ -163,10 +155,4 @@ frappe.ui.form.on("Sales Taxes and Charges", {
             row.business_unit = frm.doc.business_unit
         }, 1000)
     },
-	department: function (frm, cdt, cdn) {
-        frappe.model.set_value(cdt, cdn, "division", "");
-	},
-	division: function (frm, cdt, cdn) {
-        frappe.model.set_value(cdt, cdn, "business_unit", "");
-	}
 });

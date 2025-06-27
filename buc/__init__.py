@@ -9,11 +9,6 @@ from .custom import sales_order as buc_sales_order
 from erpnext.selling.doctype.sales_order import sales_order as origin_sales_order
 origin_sales_order.make_delivery_note = buc_sales_order.make_delivery_note
 
-# Overwrite make_purchase_order function
-from .custom import material_request as buc_material_request
-from erpnext.stock.doctype.material_request import material_request as origin_material_request
-origin_material_request.make_purchase_order = buc_material_request.make_purchase_order
-
 # Overwrite get_gl_dict function
 import erpnext.controllers.accounts_controller
 original_get_gl_dict = erpnext.controllers.accounts_controller.AccountsController.get_gl_dict

@@ -30,7 +30,7 @@ frappe.ui.form.on("Purchase Order", {
                             d.division = division,
                             d.business_unit = business_unit
                         });
-                    }, 1000);
+                    }, 8000);
                 })
             })
         }
@@ -96,41 +96,47 @@ frappe.ui.form.on("Purchase Order", {
     },
     cost_center: function (frm) {
         setTimeout(() => {
-            $.each(frm.doc.items, function(i, d){
-                d.cost_center = frm.doc.cost_center
-            });
+            // $.each(frm.doc.items, function(i, d){
+            //     d.cost_center = frm.doc.cost_center
+            // });
 
             $.each(frm.doc.taxes, function(i, d){
                 d.cost_center = frm.doc.cost_center
             });
-        }, 1000);
+        }, 8000);
     },
 	department: function (frm) {
-        $.each(frm.doc.items, function(i, d){
-            d.department = frm.doc.department
-        });
+        setTimeout(() => {
+            // $.each(frm.doc.items, function(i, d){
+            //     d.department = frm.doc.department
+            // });
 
-        $.each(frm.doc.taxes, function(i, d){
-            d.department = frm.doc.department
-        });
+            $.each(frm.doc.taxes, function(i, d){
+                d.department = frm.doc.department
+            });
+        }, 8000);
 	},
 	division: function (frm) {
-        $.each(frm.doc.items, function(i, d){
-            d.division = frm.doc.division
-        });
+        setTimeout(() => {
+            // $.each(frm.doc.items, function(i, d){
+            //     d.division = frm.doc.division
+            // });
 
-        $.each(frm.doc.taxes, function(i, d){
-            d.division = frm.doc.division
-        });
+            $.each(frm.doc.taxes, function(i, d){
+                d.division = frm.doc.division
+            });
+        }, 8000);
 	},
 	business_unit: function (frm) {
-        $.each(frm.doc.items, function(i, d){
-            d.business_unit = frm.doc.business_unit
-        });
+        setTimeout(() => {
+            // $.each(frm.doc.items, function(i, d){
+            //     d.business_unit = frm.doc.business_unit
+            // });
 
-        $.each(frm.doc.taxes, function(i, d){
-            d.business_unit = frm.doc.business_unit
-        });
+            $.each(frm.doc.taxes, function(i, d){
+                d.business_unit = frm.doc.business_unit
+            });
+        }, 8000);
 	},
 });
 

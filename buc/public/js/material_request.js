@@ -69,19 +69,25 @@ frappe.ui.form.on("Material Request", {
         }, 1000);
     },
 	department: function (frm) {
-        $.each(frm.doc.items, function(i, d){
-            d.department = frm.doc.department
-        });
+        setTimeout(() => {
+            $.each(frm.doc.items, function(i, d){
+                d.department = frm.doc.department
+            });
+        }, 1000);
 	},
 	division: function (frm) {
-        $.each(frm.doc.items, function(i, d){
-            d.division = frm.doc.division
-        });
+        setTimeout(() => {
+            $.each(frm.doc.items, function(i, d){
+                d.division = frm.doc.division
+            });
+        }, 1000);
 	},
 	business_unit: function (frm) {
-        $.each(frm.doc.items, function(i, d){
-            d.business_unit = frm.doc.business_unit
-        });
+        setTimeout(() => {
+            $.each(frm.doc.items, function(i, d){
+                d.business_unit = frm.doc.business_unit
+            });
+        }, 1000);
 	},
     custom_customer_name: function(frm) {
         if (frm.doc.custom_customer_name) {

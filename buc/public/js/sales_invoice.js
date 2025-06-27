@@ -106,31 +106,37 @@ frappe.ui.form.on("Sales Invoice", {
         }, 1000);
     },
 	department: function (frm) {
-        $.each(frm.doc.items, function(i, d){
-            d.department = frm.doc.department
-        });
+        setTimeout(() => {
+            $.each(frm.doc.items, function(i, d){
+                d.department = frm.doc.department
+            });
 
-        $.each(frm.doc.taxes, function(i, d){
-            d.department = frm.doc.department
-        });
+            $.each(frm.doc.taxes, function(i, d){
+                d.department = frm.doc.department
+            });
+        }, 1000);
 	},
 	division: function (frm) {
-        $.each(frm.doc.items, function(i, d){
-            d.division = frm.doc.division
-        });
+        setTimeout(() => {
+            $.each(frm.doc.items, function(i, d){
+                d.division = frm.doc.division
+            });
 
-        $.each(frm.doc.taxes, function(i, d){
-            d.division = frm.doc.division
-        });
+            $.each(frm.doc.taxes, function(i, d){
+                d.division = frm.doc.division
+            });
+        }, 1000);
 	},
 	business_unit: function (frm) {
-        $.each(frm.doc.items, function(i, d){
-            d.business_unit = frm.doc.business_unit
-        });
+        setTimeout(() => {
+            $.each(frm.doc.items, function(i, d){
+                d.business_unit = frm.doc.business_unit
+            });
 
-        $.each(frm.doc.taxes, function(i, d){
-            d.business_unit = frm.doc.business_unit
-        });
+            $.each(frm.doc.taxes, function(i, d){
+                d.business_unit = frm.doc.business_unit
+            });
+        }, 1000);
 	},
 });
 

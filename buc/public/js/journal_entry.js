@@ -1,4 +1,4 @@
-frappe.ui.form.on("Material Request", {
+frappe.ui.form.on("Journal Entry", {
     onload: function(frm) {
         if (frm.is_new() && !frm.doc.amended_from && !frm.doc.__onload) {
             frappe.db.get_value("Employee", {"user_id": frappe.session.user}, ["cost_center", "department", "division", "business_unit"], (r) => {
@@ -10,20 +10,24 @@ frappe.ui.form.on("Material Request", {
                     if (cost_center === null || cost_center === undefined || cost_center === "") {
                         cost_center = k.cost_center
                     }
-
-                    frm.doc.cost_center = cost_center
-                    frm.doc.department = department
-                    frm.doc.division = division
-                    frm.doc.business_unit = business_unit
-
-                    setTimeout(() => {
-                        $.each(frm.doc.items, function(i, d){
-                            d.cost_center = cost_center,
-                            d.department = department,
-                            d.division = division,
-                            d.business_unit = business_unit
-                        });
-                    }, 5000);
+                    if (!frm.doc.cost_center && !frm.doc.department && !frm.doc.division && !frm.doc.business_unit) {
+                        frm.doc.cost_center = cost_center
+                        frm.doc.department = department
+                        frm.doc.division = division
+                        frm.doc.business_unit = business_unit
+                        frm.refresh_field("cost_center");
+                        frm.refresh_field("department");
+                        frm.refresh_field("division");
+                        frm.refresh_field("business_unit");
+                        setTimeout(() => {
+                            $.each(frm.doc.accounts, function(i, d){
+                                d.cost_center = cost_center,
+                                d.department = department,
+                                d.division = division,
+                                d.business_unit = business_unit
+                            });
+                        }, 5000);
+                    }
                 })
             })
         }
@@ -44,7 +48,7 @@ frappe.ui.form.on("Material Request", {
                 ]
             };
         });
-        frm.fields_dict["items"].grid.get_field("division").get_query = function(doc, cdt, cdn) {
+        frm.fields_dict["accounts"].grid.get_field("division").get_query = function(doc, cdt, cdn) {
             let row = locals[cdt][cdn];
             return {
                 filters: [
@@ -52,7 +56,7 @@ frappe.ui.form.on("Material Request", {
                 ]
             };
         };
-        frm.fields_dict["items"].grid.get_field("business_unit").get_query = function(doc, cdt, cdn) {
+        frm.fields_dict["accounts"].grid.get_field("business_unit").get_query = function(doc, cdt, cdn) {
             let row = locals[cdt][cdn];
             return {
                 filters: [
@@ -63,55 +67,36 @@ frappe.ui.form.on("Material Request", {
     },
     cost_center: function (frm) {
         setTimeout(() => {
-            $.each(frm.doc.items, function(i, d){
+            $.each(frm.doc.accounts, function(i, d){
                 d.cost_center = frm.doc.cost_center
             });
         }, 1000);
     },
 	department: function (frm) {
         setTimeout(() => {
-            $.each(frm.doc.items, function(i, d){
+            $.each(frm.doc.accounts, function(i, d){
                 d.department = frm.doc.department
             });
         }, 1000);
 	},
 	division: function (frm) {
         setTimeout(() => {
-            $.each(frm.doc.items, function(i, d){
+            $.each(frm.doc.accounts, function(i, d){
                 d.division = frm.doc.division
             });
         }, 1000);
 	},
 	business_unit: function (frm) {
         setTimeout(() => {
-            $.each(frm.doc.items, function(i, d){
+            $.each(frm.doc.accounts, function(i, d){
                 d.business_unit = frm.doc.business_unit
             });
         }, 1000);
 	},
-    custom_customer_name: function(frm) {
-        if (frm.doc.custom_customer_name) {
-            frappe.call({
-                method: "buc.custom.material_request.get_target_warehouse",
-                args: {
-                    customer: frm.doc.custom_customer_name,
-                },
-                callback: function(response) {
-                    if(response.message) {
-                        frm.set_value("set_warehouse", response.message);
-                        frm.doc.items.forEach(function(row) {
-                            row.warehouse = response.message;
-                        });
-                        frm.refresh_field("items");
-                    }
-                }
-            });
-        }
-    }
 });
 
-frappe.ui.form.on("Material Request Item", {
-    items_add: function (frm, cdt, cdn) {
+frappe.ui.form.on("Journal Entry Account", {
+    accounts_add: function (frm, cdt, cdn) {
         setTimeout(() => {
             row = locals[cdt][cdn]
             row.cost_center = frm.doc.cost_center

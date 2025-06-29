@@ -9,6 +9,16 @@ from .custom import sales_order as buc_sales_order
 from erpnext.selling.doctype.sales_order import sales_order as origin_sales_order
 origin_sales_order.make_delivery_note = buc_sales_order.make_delivery_note
 
+# Overwrite get_expense_claim function
+from .custom import expense_claim as buc_expense_claim
+from hrms.hr.doctype.expense_claim import expense_claim as origin_expense_claim
+origin_expense_claim.get_expense_claim = buc_expense_claim.get_expense_claim
+
+# Overwrite make_return_entry function
+from .custom import employee_advance as buc_employee_advance
+from hrms.hr.doctype.employee_advance import employee_advance as origin_employee_advance
+origin_employee_advance.make_return_entry = buc_employee_advance.make_return_entry
+
 # Overwrite get_gl_dict function
 import erpnext.controllers.accounts_controller
 original_get_gl_dict = erpnext.controllers.accounts_controller.AccountsController.get_gl_dict

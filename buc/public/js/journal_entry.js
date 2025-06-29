@@ -10,22 +10,24 @@ frappe.ui.form.on("Journal Entry", {
                     if (cost_center === null || cost_center === undefined || cost_center === "") {
                         cost_center = k.cost_center
                     }
-                    frm.doc.cost_center = cost_center
-                    frm.doc.department = department
-                    frm.doc.division = division
-                    frm.doc.business_unit = business_unit
-                    frm.refresh_field("cost_center");
-                    frm.refresh_field("department");
-                    frm.refresh_field("division");
-                    frm.refresh_field("business_unit");
-                    setTimeout(() => {
-                        $.each(frm.doc.accounts, function(i, d){
-                            d.cost_center = cost_center,
-                            d.department = department,
-                            d.division = division,
-                            d.business_unit = business_unit
-                        });
-                    }, 5000);
+                    if (!frm.doc.cost_center && !frm.doc.department && !frm.doc.division && !frm.doc.business_unit) {
+                        frm.doc.cost_center = cost_center
+                        frm.doc.department = department
+                        frm.doc.division = division
+                        frm.doc.business_unit = business_unit
+                        frm.refresh_field("cost_center");
+                        frm.refresh_field("department");
+                        frm.refresh_field("division");
+                        frm.refresh_field("business_unit");
+                        setTimeout(() => {
+                            $.each(frm.doc.accounts, function(i, d){
+                                d.cost_center = cost_center,
+                                d.department = department,
+                                d.division = division,
+                                d.business_unit = business_unit
+                            });
+                        }, 5000);
+                    }
                 })
             })
         }

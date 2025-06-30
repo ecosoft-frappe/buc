@@ -19,6 +19,18 @@ from .custom import employee_advance as buc_employee_advance
 from hrms.hr.doctype.employee_advance import employee_advance as origin_employee_advance
 origin_employee_advance.make_return_entry = buc_employee_advance.make_return_entry
 
+# Overwrite get_payment_entry function
+from .custom import payment_entry as buc_payment_entry
+from erpnext.accounts.doctype.payment_entry import payment_entry as origin_payment_entry
+from erpnext_thailand.custom import payment_entry as origin_payment_entry_2
+origin_payment_entry.get_payment_entry = buc_payment_entry.get_payment_entry
+origin_payment_entry_2.get_withholding_tax_from_type = buc_payment_entry.get_withholding_tax_from_type
+
+# Overwrite get_payment_entry_for_employee function
+from .custom import employee_payment_entry as buc_employee_payment_entry
+from hrms.overrides import employee_payment_entry as origin_employee_payment_entry
+origin_employee_payment_entry.get_payment_entry_for_employee = buc_employee_payment_entry.get_payment_entry_for_employee
+
 # Overwrite get_gl_dict function
 import erpnext.controllers.accounts_controller
 original_get_gl_dict = erpnext.controllers.accounts_controller.AccountsController.get_gl_dict

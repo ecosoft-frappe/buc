@@ -46,8 +46,18 @@ app_license = "mit"
 
 doctype_js = {
     "Quotation": "public/js/quotation.js",
+    "Sales Order": "public/js/sales_order.js",
+    "Sales Invoice": "public/js/sales_invoice.js",
+    "Delivery Note": "public/js/delivery_note.js",
     "Stock Entry": "public/js/stock_entry.js",
     "Material Request": "public/js/material_request.js",
+    "Purchase Order": "public/js/purchase_order.js",
+    "Purchase Invoice": "public/js/purchase_invoice.js",
+    "Purchase Receipt": "public/js/purchase_receipt.js",
+    "Journal Entry": "public/js/journal_entry.js",
+    "Expense Claim": "public/js/expense_claim.js",
+    "Payment Entry": "public/js/payment_entry.js",
+    "Employee": "public/js/employee.js",
 }
 
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}

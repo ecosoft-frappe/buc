@@ -1,5 +1,6 @@
 import frappe
 from erpnext.stock.doctype.material_request.material_request import MaterialRequest
+from erpnext.stock.doctype.material_request.material_request import make_purchase_order as origin_make_purchase_order
 
 
 class MaterialRequestBUC(MaterialRequest):

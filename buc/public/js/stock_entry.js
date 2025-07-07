@@ -3,29 +3,29 @@ frappe.ui.form.on("Stock Entry", {
         if (frm.is_new() && !frm.doc.amended_from && !frm.doc.__onload) {
             frappe.db.get_value("Employee", {"user_id": frappe.session.user}, ["cost_center", "department", "division", "business_unit"], (r) => {
                 frappe.db.get_value("Company", frm.doc.company, "cost_center", (k) => {
-                    let cost_center = r.cost_center
-                    let department = r.department
-                    let division = r.division
-                    let business_unit = r.business_unit
+                    let cost_center = r.cost_center;
+                    let department = r.department;
+                    let division = r.division;
+                    let business_unit = r.business_unit;
                     if (cost_center === null || cost_center === undefined || cost_center === "") {
-                        cost_center = k.cost_center
+                        cost_center = k.cost_center;
                     }
 
-                    frm.doc.cost_center = cost_center
-                    frm.doc.department = department
-                    frm.doc.division = division
-                    frm.doc.business_unit = business_unit
+                    frm.doc.cost_center = cost_center;
+                    frm.doc.department = department;
+                    frm.doc.division = division;
+                    frm.doc.business_unit = business_unit;
 
                     setTimeout(() => {
-                        $.each(frm.doc.items, function(i, d){
-                            d.cost_center = cost_center,
-                            d.department = department,
-                            d.division = division,
-                            d.business_unit = business_unit
+                        $.each(frm.doc.items, function(i, d) {
+                            d.cost_center = cost_center;
+                            d.department = department;
+                            d.division = division;
+                            d.business_unit = business_unit;
                         });
                     }, 5000);
-                })
-            })
+                });
+            });
         }
     },
     refresh: function (frm) {
@@ -63,29 +63,29 @@ frappe.ui.form.on("Stock Entry", {
     },
     cost_center: function (frm) {
         setTimeout(() => {
-            $.each(frm.doc.items, function(i, d){
-                d.cost_center = frm.doc.cost_center
+            $.each(frm.doc.items, function(i, d) {
+                d.cost_center = frm.doc.cost_center;
             });
         }, 1000);
     },
 	department: function (frm) {
         setTimeout(() => {
-            $.each(frm.doc.items, function(i, d){
-                d.department = frm.doc.department
+            $.each(frm.doc.items, function(i, d) {
+                d.department = frm.doc.department;
             });
         }, 1000);
 	},
 	division: function (frm) {
         setTimeout(() => {
-            $.each(frm.doc.items, function(i, d){
-                d.division = frm.doc.division
+            $.each(frm.doc.items, function(i, d) {
+                d.division = frm.doc.division;
             });
         }, 1000);
 	},
 	business_unit: function (frm) {
         setTimeout(() => {
-            $.each(frm.doc.items, function(i, d){
-                d.business_unit = frm.doc.business_unit
+            $.each(frm.doc.items, function(i, d) {
+                d.business_unit = frm.doc.business_unit;
             });
         }, 1000);
 	},
@@ -118,12 +118,12 @@ frappe.ui.form.on("Stock Entry", "custom_get_serial__batch_no_from_set_of_item",
         frm.doc.items.forEach(row => {
             // Source warehouse must same
             if (row.s_warehouse && row.s_warehouse != setDoc.warehouse) {
-                frappe.throw(__("Source warehouse must same with set of item."))
+                frappe.throw(__("Source warehouse must same with set of item."));
             }
 
             // Serial / Batch No. must clean
             if (row.serial_no || row.batch_no) {
-                frappe.throw(__("Serial / Batch No. is assigned, please remove it before this action."))
+                frappe.throw(__("Serial / Batch No. is assigned, please remove it before this action."));
             }
         });
 
@@ -163,11 +163,11 @@ frappe.ui.form.on("Stock Entry", "custom_get_serial__batch_no_from_set_of_item",
 frappe.ui.form.on("Stock Entry Detail", {
     items_add: function (frm, cdt, cdn) {
         setTimeout(() => {
-            row = locals[cdt][cdn]
-            row.cost_center = frm.doc.cost_center
-            row.department = frm.doc.department
-            row.division = frm.doc.division
-            row.business_unit = frm.doc.business_unit
-        }, 1000)
+            row = locals[cdt][cdn];
+            row.cost_center = frm.doc.cost_center;
+            row.department = frm.doc.department;
+            row.division = frm.doc.division;
+            row.business_unit = frm.doc.business_unit;
+        }, 1000);
     },
 });

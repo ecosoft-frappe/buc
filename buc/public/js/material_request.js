@@ -107,6 +107,22 @@ frappe.ui.form.on("Material Request", {
                 }
             });
         }
+        for (var i = 0; i < frm.doc.items.length; i++) {
+            var item = frm.doc.items[i];
+            update_selling_rate(frm, item.doctype, item.name);
+        }
+    },
+    transaction_date: function(frm) {
+        for (var i = 0; i < frm.doc.items.length; i++) {
+            var item = frm.doc.items[i];
+            update_selling_rate(frm, item.doctype, item.name);
+        }
+    },
+    custom_selling_price_list: function(frm) {
+        for (var i = 0; i < frm.doc.items.length; i++) {
+            var item = frm.doc.items[i];
+            update_selling_rate(frm, item.doctype, item.name);
+        }
     }
 });
 
@@ -120,4 +136,23 @@ frappe.ui.form.on("Material Request Item", {
             row.business_unit = frm.doc.business_unit;
         }, 1000);
     },
+    item_code: function (frm, cdt, cdn) {
+        update_selling_rate(frm, cdt, cdn);
+    },
+    uom: function (frm, cdt, cdn) {
+        update_selling_rate(frm, cdt, cdn);
+    },
 });
+
+function update_selling_rate(frm, cdt, cdn) {
+    frappe.call({
+        method: "buc.custom.material_request.get_selling_rate",
+        args: {
+            doc: frm.doc,
+            item: locals[cdt][cdn],
+        },
+        callback: function(r) {
+            frappe.model.set_value(cdt, cdn, "custom_selling_rate", r.message);
+        }
+    });
+}

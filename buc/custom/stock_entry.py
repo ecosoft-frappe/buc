@@ -23,7 +23,9 @@ def make_quotation_from_stock_entry(source_name, target_doc=None):
         target.update({
             "quotation_to": "Customer",
             "party_name": source.custom_customer_name,
+            "selling_price_list": source.custom_selling_price_list,
             "order_type": "Sales Order",
+            "ignore_pricing_rule": 1,
         })
 
     def update_item(source_item, target_item, source_doc):

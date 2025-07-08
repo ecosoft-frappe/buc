@@ -9,7 +9,7 @@
  "is_standard": "Yes",
  "modified": "2017-02-24 20:00:30.392287",
  "modified_by": "Administrator",
- "module": "Stock",
+ "module": "BUC",
  "name": "Batch Item Expiry Status BUC",
  "owner": "Administrator",
  "ref_doctype": "Stock Ledger Entry",

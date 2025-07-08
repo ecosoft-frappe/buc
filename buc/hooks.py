@@ -107,6 +107,10 @@ doctype_js = {
 # before_uninstall = "buc.uninstall.before_uninstall"
 # after_uninstall = "buc.uninstall.after_uninstall"
 
+after_migrate = [
+    "buc.custom.report_setting.set_report_as_disable",
+]
+
 # Integration Setup
 # ------------------
 # To set up dependencies/integrations with other apps
